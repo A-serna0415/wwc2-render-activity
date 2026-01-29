@@ -7,23 +7,24 @@ let drawIsOn = false;
 let colorR;
 let colorG;
 let colorB;
+let alpha = 80;
 
 function setup() {
-  canvas = createCanvas(500, 500);
+  canvas = createCanvas(windowWidth, windowHeight);
 
   colorR = random(0, 255);
   colorG = random(0, 255);
   colorB = random(0, 255);
 
   //set styling for the sketch
-  background(0, 70);
+  background(0);
   noStroke();
 }
 
 function draw() {
 
   if (drawIsOn) {
-    fill(colorR, colorG, colorB);
+    fill(colorR, colorG, colorB, alpha);
     circle(mouseX, mouseY, bSize);
   }
 
@@ -45,12 +46,13 @@ function mouseDragged() { // Function to save the event "drawing" inside a POJO
     userS: bSize,
     colR: colorR,
     colG: colorG,
-    colB: colorB
+    colB: colorB,
+    alpha: alpha
   });
 }
 
 function drawStuff(data) {
-  fill(data.colR, data.colG, data.colB);
+  fill(data.colR, data.colG, data.colB, data.alpha);
   circle(data.xpos, data.ypos, data.userS);
 };
 
